@@ -10,7 +10,8 @@ def get_connection(db, user=env.username, host=env.host, password=env.password):
     info as plain text. 
     '''
     return f'mysql+pymysql://{user}:{password}@{host}/{db}'
-
+# these functions below will pull dbs as dataframes from the codeup database if it hasnt already
+# if it has, it will write a cache. 
 def get_titanic_data():
     '''
     This function pulls the titanic db into a dataframe if it doesnt exist, or it will cache 
@@ -33,6 +34,6 @@ def get_iris_data():
         iris_df = pd.read_csv(filename, index_col=0)
         return iris_df
     else:
-        iris_df = pd.read_sql('select * from measurements join species using (species_id);', get_connection('iris_db'))
+        iris_df = pd.read_sql('SELECT * from MEASUREMENTS JOIN species USING(species_id);', get_connection('iris_db'))
         iris_df.to_csv(filename)
         return iris_df
