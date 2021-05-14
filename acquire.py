@@ -23,7 +23,7 @@ def get_titanic_data():
         return titanic_df
     else:
         titanic_df = pd.read_sql('SELECT * FROM passengers', get_connection('titanic_db'))
-        titanic_df.to_csv(filename)
+        titanic_df.to_csv(filename, mode = 'w+')
         return titanic_df
     
 def get_iris_data():
