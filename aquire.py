@@ -34,6 +34,6 @@ def get_iris_data():
         iris_df = pd.read_csv(filename, index_col=0)
         return iris_df
     else:
-        iris_df = pd.read_sql('SELECT * from MEASUREMENTS JOIN species USING(species_id);', get_connection('iris_db'))
+        iris_df = pd.read_sql('SELECT * FROM measurements JOIN species USING(species_id);', get_connection('iris_db'))
         iris_df.to_csv(filename)
         return iris_df
