@@ -1,5 +1,8 @@
 import numpy as np
 import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.impute import SimpleImputer
+
 def prep_iris(iris_df):
     '''
     Takes in the iris_df, drops species id, and measurement id, then adds a dummy
