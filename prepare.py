@@ -13,7 +13,6 @@ def prep_iris(iris_df, dummies):
     if dummies == True:
         iris_df = pd.get_dummies(data = iris_df, columns = ['species'], drop_first=True)
     return iris_df
-
 # # Remember to delte your titanic .csv if you've already run this, or else it will break 
 def impute_mode(train, validate, test):
     '''
