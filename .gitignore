@@ -5,3 +5,4 @@ titanic.csv
 iris.csv
 env.py
 *.xlsx
+*lesson.ipynb
