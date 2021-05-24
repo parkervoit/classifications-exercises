@@ -23,7 +23,7 @@ def impute_mode(train, validate, test):
     validate[['embark_town']] = imputer.transform(validate[['embark_town']])
     test[['embark_town']] = imputer.transform(test[['embark_town']])
     return train, validate, test
-    t
+
 def prep_titanic_data(df):
     '''
     takes in a dataframe of the titanic dataset as it is acquired and returns a cleaned dataframe
@@ -34,7 +34,6 @@ def prep_titanic_data(df):
     df = df.drop(columns=['deck', 'embarked', 'class', 'age', 'passenger_id'])
     train, test = train_test_split(df, test_size=0.2, random_state=1349, stratify=df.survived)
     train, validate = train_test_split(train, train_size=0.7, random_state=1349, stratify=train.survived)
-
     train, validate, test = impute_mode(train, validate, test)
     train = pd.get_dummies(data = train, columns = ['sex', 'embark_town'], drop_first=[True,True])
     validate = pd.get_dummies(data = validate, columns = ['sex', 'embark_town'], drop_first=[True,True])

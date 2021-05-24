@@ -1,3 +1,29 @@
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import classification_report, confusion_matrix, recall_score, precision_score, accuracy_score
+import pandas as pd 
+def train_validate_test_split(df, target, seed=123):
+    '''
+    This function takes in a dataframe, the name of the target variable
+    (for stratification purposes), and an integer for a setting a seed
+    and splits the data into train, validate and test. 
+    Test is 20% of the original dataset, validate is .30*.80= 24% of the 
+    original dataset, and train is .70*.80= 56% of the original dataset. 
+    The function returns, in this order, train, validate and test dataframes. 
+    '''
+    train_validate, test = train_test_split(df, test_size=0.2, 
+                                            random_state=seed, 
+                                            stratify=df[target])
+    train, validate = train_test_split(train_validate, test_size=0.3, 
+                                       random_state=seed,
+                                       stratify=train_validate[target])
+    return train, validate, test
+
+def model_variables(df,X_cols, y_col, split_target):
+    X_train, y_train = train[X_cols], train[y_col]
+    X_validate, y_validate = validate[X_cols], validate[y_col]
+    X_test, y_test = test[X_cols], test[y_col]
+    return X_train, y_train, X_validate, y_validate, X_test, y_test
+
 def run_metrics(model, data_set):
     """
     This function takes in a model and ouputs metrics. 
